@@ -1,0 +1,72 @@
+
+@mixin gradient($colour1, $colour2, $direction: 'right') {
+	$gradientType: false;
+	$webkitMoz: false;
+	$to: false;
+	@if $direction == 'right' {
+		$webkitMoz: 'left';
+		$to: 'to right';
+		$gradientType: 1;
+	} @else if $direction == 'left' {
+		//Swap colours
+		$tempColour: $colour1;
+		$colour1: $colour2;
+		$colour2: $tempColour;
+
+		$to: 'to right';
+		$webkitMoz: 'left';
+		$gradientType: 1;
+	} @else if $direction == 'up' {
+		//Swap colours
+		$tempColour: $colour1;
+		$colour1: $colour2;
+
+		$to: 'to bottom';
+		$webkitMoz: 'top';
+		$gradientType: 0;
+	} @else if $direction == 'down' {
+		$to: 'to bottom';
+		$webkitMoz: 'top';
+		$gradientType: 0;
+	}
+
+	background: $colour1;
+	background: -moz-linear-gradient(#{$webkitMoz},  $colour1 0%, $colour2 100%);
+	background: -webkit-linear-gradient(#{$webkitMoz},  $colour1 0%,$colour2 100%);
+	background: linear-gradient(#{$to},  $colour1 0%,$colour2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$colour1}', endColorstr='#{$colour2}',GradientType='#{$gradientType}' );
+
+}
+
+@mixin generate-flex($width, $extra: true) {
+	display: flex;
+	@if width == 0 {
+		flex: 1 1 initial;
+		max-width: initial;
+		width: initial;
+	} @else {
+		flex: 1 1 $width;
+		max-width: $width;
+		width: $width;
+	}
+
+	@if $extra {
+		justify-content: start;
+		align-items: start;
+		align-content: start;
+		box-sizing: border-box;
+	}
+}
+
+@mixin generate-flex-items($multiple, $extra: true) {
+	$total: (100 / $multiple);
+
+	// width:
+	@for $i from 1 through $total {
+		$width-name: $i*$multiple;
+		$width: percentage($i*$multiple/100);
+		&-#{$width-name} {
+			@include generate-flex($width, $extra);
+		}
+	}
+}

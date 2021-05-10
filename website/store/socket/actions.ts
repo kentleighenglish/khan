@@ -9,7 +9,9 @@ import {
 // import { init as socketInit } from "@src/utilities/socket";
 import { User } from "@/types/user";
 
-const socketInit = (user) => {};
+const socketInit = (user: any) => {
+  return user;
+};
 
 export const hookEvents = ({ commit, state }: Store) => {
   const socket = state.socket;

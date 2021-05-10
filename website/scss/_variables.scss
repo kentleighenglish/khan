@@ -1,0 +1,71 @@
+
+$primary: #EA7019;
+$primary-dark: darken($primary, 10%);
+$primary-light: lighten($primary, 15%);
+$secondary: #E04545;
+$secondary-dark: darken($secondary, 20%);
+
+$tertiary: #E52D98;
+$tertiary-dark: darken($tertiary, 20%);
+$quantary: #3790DD;
+$quantary-dark: darken($quantary, 20%);
+
+$success: #4AAD51;
+$warning: #F7AC2A;
+$danger: #E52B2B;
+
+$grey-10: #EFF8FF;
+$grey-9: #ADBCCC;
+$grey-8: #8A9DAD;
+$grey-7: #7C8E9E;
+$grey-6: #6D7E8E;
+$grey-5: #62727F;
+$grey-4: #505F6B;
+$grey-3: #35444F;
+$grey-2: #25313A;
+$grey-1: #182128;
+$grey-0: #0E1419;
+
+$grey-lightest: $grey-10;
+$grey-lighter: $grey-9;
+$grey-light: $grey-7;
+$grey: $grey-5;
+$grey-dark: $grey-3;
+$grey-darker: $grey-2;
+$grey-darkest: $grey-0;
+
+$bg: $grey-darkest;
+
+// Text
+$h1-size: 40px;
+$h2-size: 36px;
+
+$font-xl: 24px;
+$font-lg: 20px;
+$font-md: 16px;
+$font-sm: 14px;
+
+$base-font-family: 'Muli', sans-serif;
+$base-font-colour: white;
+$base-font-size: $font-md;
+
+$link-colour: $primary;
+$link-hover-colour: $primary-light;
+
+// Inputs
+
+$input-font-family: $base-font-family;
+$input-font-size: $font-md;
+$input-colour: $primary;
+$input-placeholder: $grey-light;
+$input-bg: $grey-darker;
+
+// Sizes
+$content-width: 1280px;
+
+$gap: 30px;
+
+// Other
+
+$anim-speed: .2s;
+$anim-speed-slow: .4s;
