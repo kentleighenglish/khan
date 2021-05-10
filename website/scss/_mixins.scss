@@ -59,7 +59,7 @@
 }
 
 @mixin generate-flex-items($multiple, $extra: true) {
-	$total: (100 / $multiple);
+	$total: floor(100 / $multiple);
 
 	// width:
 	@for $i from 1 through $total {

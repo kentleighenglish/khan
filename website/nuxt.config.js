@@ -17,7 +17,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ["./scss/bootstrap.scss"],
   styleResources: {
     scss: ["./scss/_global.scss"],
   },

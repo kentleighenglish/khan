@@ -3,7 +3,7 @@
     <div className="container">
       <GlobalNav />
     </div>
-    <Masthead v-if="isHome" />
+    <GlobalMasthead v-if="isHome" />
   </header>
 </template>
 <script lang="ts">
@@ -14,9 +14,7 @@ export default Vue.extend({
   computed: {
     ...mapState({
       isHome(): boolean {
-        // eslint-disable-next-line no-console
-        console.log(this.$route);
-        return true;
+        return this.$route.fullPath === "/";
       },
     }),
   },

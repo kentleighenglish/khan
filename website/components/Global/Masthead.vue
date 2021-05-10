@@ -1,5 +1,3 @@
-import { applyModifiers } from "@src/utilities/utility";
-
 <template>
   <div class="masthead">
     <div class="container">
@@ -30,5 +28,80 @@ export default Vue.extend({
   }),
 });
 </script>
+<style lang="scss">
+$positions: (50px, 150px, 25px, 125px, 75px, 150px, 20px);
 
-export default Masthead;
+.masthead {
+  width: 100%;
+  height: 500px;
+
+  // border: 0px solid $secondary;
+  // border-top-width: 2px;
+  // border-bottom-width: 2px;
+
+  &__blocks {
+    position: relative;
+    margin: 0 $gap * -1 0 $gap;
+  }
+
+  &__block {
+    position: relative;
+    display: inline-block;
+    top: 0;
+    margin: 0 ($gap / 4);
+
+    @for $i from 1 through length($positions) {
+      $pos: nth($positions, $i);
+
+      &:nth-child(#{$i}) {
+        transform: skew(-20deg) translate(0, $pos);
+        // top: $pos;
+      }
+    }
+
+    // transform: skewX(-20deg);
+
+    background-color: $primary;
+
+    &--left {
+      transform-origin: bottom left;
+      // float: left;
+    }
+
+    &--right {
+      transform-origin: top left;
+      float: right;
+    }
+
+    // Widths
+    &--thick {
+      width: 80px;
+    }
+
+    &--thin {
+      width: 60px;
+    }
+
+    &--very-thin {
+      width: 30px;
+    }
+
+    // Heights
+    &--very-tall {
+      height: 350px;
+    }
+
+    &--tall {
+      height: 300px;
+    }
+
+    &--short {
+      height: 250px;
+    }
+
+    &--very-short {
+      height: 200px;
+    }
+  }
+}
+</style>
