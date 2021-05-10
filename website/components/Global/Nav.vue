@@ -84,7 +84,9 @@ nav.dashboard-nav {
       a {
         display: block;
         font-size: $font-lg;
+        color: $base-font-colour;
         cursor: pointer;
+        text-decoration: none;
 
         padding: ($gap / 2) $gap;
 
