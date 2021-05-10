@@ -1,5 +1,5 @@
 <template>
-  <nav class="mainNav">
+  <nav class="nav">
     <ul>
       <li v-for="item in navItems" :key="item.path || item.action">
         <a
@@ -42,6 +42,8 @@ export default Vue.extend({
       if (this.loggedIn === true) {
         items.push({ path: "/dashboard", label: "Dashboard" });
         items.push({ path: "@logout", label: "Logout" });
+      } else {
+        items.push({ path: "/login", label: "Login" });
       }
 
       return items;
