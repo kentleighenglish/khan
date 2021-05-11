@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <App>
     <GlobalHeader />
-    <div className="content">
+    <div class="content">
       <Nuxt />
     </div>
-  </div>
+  </App>
 </template>

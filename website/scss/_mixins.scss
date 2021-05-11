@@ -51,9 +51,9 @@
 	}
 
 	@if $extra {
-		justify-content: start;
-		align-items: start;
-		align-content: start;
+		justify-content: flex-start;
+		align-items: flex-start;
+		align-content: flex-start;
 		box-sizing: border-box;
 	}
 }

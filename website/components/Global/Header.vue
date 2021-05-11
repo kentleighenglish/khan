@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div className="container">
+    <div class="container">
       <GlobalNav />
     </div>
     <GlobalMasthead v-if="isHome" />

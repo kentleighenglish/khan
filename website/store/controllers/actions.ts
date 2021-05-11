@@ -7,7 +7,7 @@ import {
 import { Controller } from "@/types/controllers";
 
 // import { get } from '@src/utilities/api';
-const get = (string: any) => [];
+const get = async (string: any) => await Promise.resolve([]);
 
 export const fetchAll = async ({ commit }: Store) => {
   commit(controllersFetchType);
