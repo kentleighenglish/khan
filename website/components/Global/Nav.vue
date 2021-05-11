@@ -47,7 +47,7 @@ export default Vue.extend({
   },
   computed: {
     ...mapState({
-      socketState({ socket: { connected, connecting } }) {
+      socketState({ socket: { connected, connecting } }: RootState): string {
         if (connected) {
           return "connected";
         }
@@ -57,7 +57,7 @@ export default Vue.extend({
 
         return "disconnected";
       },
-      hasSocket({ socket: { socket } }) {
+      hasSocket({ socket: { socket } }: RootState) {
         return !!socket;
       },
       loggedIn({ user }: RootState): boolean {
