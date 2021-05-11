@@ -8,6 +8,7 @@ import Vue from "vue";
 import { mapActions } from "vuex";
 
 export default Vue.extend({
+  layout: "dashboard",
   mounted() {
     this.fetchAllControllers();
   },

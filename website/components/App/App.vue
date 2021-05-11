@@ -3,7 +3,7 @@
     <slot />
   </div>
 </template>
-<script>
+<script lang="ts">
 import Vue from "vue";
 import { mapState, mapActions } from "vuex";
 

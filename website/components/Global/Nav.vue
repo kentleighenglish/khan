@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav">
+  <nav v-modifiers:nav="navType">
     <ul>
       <li v-for="item in items" :key="item.path || item.action">
         <a
@@ -79,6 +79,9 @@ export default Vue.extend({
 
       return items;
     },
+    navType(): string[] {
+      return this.type ? [this.type] : [];
+    },
     dashboardNavItems(): NavItem[] {
       return [
         { path: "/", label: "Home" },
@@ -126,6 +129,7 @@ nav.nav {
   justify-content: space-between;
 
   &--dashboard {
+    display: block;
     justify-content: initial;
     background: $grey-darker;
     border-bottom: 1px solid $grey-darkest;
