@@ -5,7 +5,7 @@
         <div
           v-for="(block, i) in blocks"
           :key="`block_${i}`"
-          apply-modifiers="masthead__block"
+          v-modifiers:masthead__block="block"
         />
       </div>
     </div>
