@@ -1,0 +1,6 @@
+node_modules/
+rf24libs/
+site-config.json
+package-lock.json
+datastores/
+.env
