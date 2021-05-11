@@ -1,0 +1,31 @@
+{
+	"port": 9090,
+	"socket": {
+		"path": "/socket"
+	},
+	"rethink": {
+		"targetDb": "main",
+		"host": "127.0.0.1",
+		"port": 6767,
+		"dbs": [
+			"main",
+			"test"
+		],
+		"tables": [
+			{ "name": "controllers" },
+			{ "name": "devices" },
+			{ "name": "users" },
+			{ "name": "sessions", "primaryKey": "sid" }
+		]
+	},
+	"rabbitmq": {
+		"host": "127.0.0.1",
+		"port": 6868
+	},
+	"allowedOrigins": [
+		"http://localhost:8080"
+	],
+	"sessions": {
+		"sessionTimeout": 86400000
+	}
+}
