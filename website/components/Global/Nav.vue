@@ -1,7 +1,7 @@
 <template>
   <nav class="nav">
     <ul>
-      <li v-for="item in navItems" :key="item.path || item.action">
+      <li v-for="item in items" :key="item.path || item.action">
         <a
           v-if="item.path.indexOf('@') !== -1"
           href="#"
@@ -14,6 +14,18 @@
         </RouterLink>
       </li>
     </ul>
+    <div
+      v-if="hasSocket"
+      :class="`dashboard-socketState dashboard-socketState--${socketState}`"
+      @click="onStateClick()"
+    >
+      <span class="dashboard-socketState__text">{{ socketState }}</span>
+      <span class="dashboard-socketState__icon">
+        <span class="dashboard-socketState__iconInner"></span>
+        <span class="dashboard-socketState__iconMiddle"></span>
+        <span class="dashboard-socketState__iconOuter"></span>
+      </span>
+    </div>
   </nav>
 </template>
 <script lang="ts">
@@ -27,8 +39,27 @@ interface NavItem {
 }
 
 export default Vue.extend({
+  props: {
+    type: {
+      type: String,
+      default: "default",
+    },
+  },
   computed: {
     ...mapState({
+      socketState({ socket: { connected, connecting } }) {
+        if (connected) {
+          return "connected";
+        }
+        if (connecting) {
+          return "connecting";
+        }
+
+        return "disconnected";
+      },
+      hasSocket({ socket: { socket } }) {
+        return !!socket;
+      },
       loggedIn({ user }: RootState): boolean {
         return !!(user.loaded && user.user);
       },
@@ -48,9 +79,23 @@ export default Vue.extend({
 
       return items;
     },
+    dashboardNavItems(): NavItem[] {
+      return [
+        { path: "/", label: "Home" },
+        { path: "@logout", label: "Logout" },
+      ];
+    },
+    items(): NavItem[] {
+      if (this.type === "dashboard") {
+        return this.dashboardNavItems;
+      }
+
+      return this.navItems;
+    },
   },
   methods: {
     ...mapActions({
+      reconnect: "socket/reconnect",
       logout: "user/logout",
     }),
     triggerAction(e: MouseEvent, action: string) {
@@ -64,13 +109,27 @@ export default Vue.extend({
           break;
       }
     },
+    onStateClick() {
+      const { reconnect, hasSocket, socketState } = this;
+
+      if (hasSocket && socketState === "disconnected") {
+        reconnect();
+      }
+    },
   },
 });
 </script>
 <style lang="scss">
-nav.nav,
-nav.dashboard-nav {
+nav.nav {
   background-color: $grey-darkest;
+  display: flex;
+  justify-content: space-between;
+
+  &--dashboard {
+    justify-content: initial;
+    background: $grey-darker;
+    border-bottom: 1px solid $grey-darkest;
+  }
 
   ul {
     display: inline-block;
@@ -98,16 +157,5 @@ nav.dashboard-nav {
       }
     }
   }
-}
-
-nav.nav {
-  display: flex;
-  justify-content: space-between;
-}
-
-nav.dashboard-nav {
-  background: $grey-darker;
-
-  border-bottom: 1px solid $grey-darkest;
 }
 </style>

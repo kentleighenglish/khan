@@ -1,6 +1,6 @@
 <template>
   <App>
-    <DashboardNav />
+    <GlobalNav />
     <div class="dashboard-content">
       <DashboardSidebar />
       <div class="dashboard-viewport">
