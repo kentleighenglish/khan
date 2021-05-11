@@ -3,7 +3,7 @@
 $alignments-h:
 	(space-between, space-between),
 	(space-around, space-around),
-	(flex-start, start),
+	(flex-start, flex-start),
 	(flex-end, end),
 	(center, center),
 	(stretch, stretch);
@@ -11,7 +11,7 @@ $alignments-h:
 $alignments-v:
 	(space-between, space-between),
 	(space-around, space-around),
-	(flex-start, start),
+	(flex-start, flex-start),
 	(flex-end, end),
 	(center, center),
 	(stretch, stretch);
