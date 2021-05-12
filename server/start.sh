@@ -1,17 +1,14 @@
+#!/bin/sh
 
-source './.env';
-
-if [ $1 ]
+if [ -f ../.env ];
 then
-	if [ $1 == '--production' ]
-	then
-		export NODE_ENV='production'
-		node index.js
-	else
-		export NODE_ENV='development'
-		nodemon index.js
-	fi
+	source "../.env";
+fi
+
+if [ "$NODE_ENV" == 'production' ]
+then
+	node index
 else
-	export NODE_ENV='development'
-	nodemon index.js
+	export NODE_ENV='development';
+	nodemon index;
 fi

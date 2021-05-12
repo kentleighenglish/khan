@@ -1,0 +1,14 @@
+{
+  "website": {
+    "host": "WEBSITE_HOST",
+    "port": "WEBSITE_PORT"
+  },
+  "server": {
+    "host": "SERVER_HOST",
+    "port": "SERVER_PORT"
+  },
+  "socket": {
+    "host": "SERVER_HOST",
+    "path": "SOCKET_PATH"
+  }
+}

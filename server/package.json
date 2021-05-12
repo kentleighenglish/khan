@@ -6,12 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev:docker": "docker-compose up",
-    "start:dev:server": "./start.sh",
-    "start:prod:docker": "echo 'unfinished code right now'",
-    "start:prod:server": "./start.sh --production",
-    "start": "parallelshell 'npm run start:dev:docker' 'npm run start:dev:server'",
-    "start:prod": "parallelshell 'docker-compose up' 'nodemon index.js'"
+    "start": "./start.sh"
   },
   "author": "Kentleigh English",
   "license": "ISC",

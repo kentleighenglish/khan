@@ -5,22 +5,20 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import debugFunc from "debug";
+import config from "config";
 
-const debug = debugFunc("server");
+const { server: serverConfig } = config;
+
+const debug = debugFunc("server:core");
 
 // const SocketLib = require('./socketlib');
 // const dblib = require('./dblib');
 // const apiHandler = require('./apiHandler');
 
-const config = {
-	port: 3001,
-	allowedOrigins: ["localhost:3000"]
-}
-
 const server = express();
 
 server.use(cors({
-	origins: config.allowedOrigins
+	origins: serverConfig.allowedOrigins
 }));
 server.use(bodyParser.json());
 
@@ -31,7 +29,7 @@ server.post("/api/:controller/:action", (request, response) => {
 	new apiHandler(request, response);
 });
 
-server.listen(config.port, () => {
-	debug(`Server Listening on localhost:${config.port}`);
+server.listen(serverConfig.port, () => {
+	debug(`Server Listening on localhost:${serverConfig.port}`);
 });
 
