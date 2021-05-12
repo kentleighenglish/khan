@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev:docker": "docker-compose up",
@@ -15,16 +16,15 @@
   "author": "Kentleigh English",
   "license": "ISC",
   "dependencies": {
-    "argon2": "^0.19.3",
-    "body-parser": "^1.18.3",
-    "config": "^1.30.0",
-    "cors": "^2.8.4",
-    "express": "^4.16.3",
-    "rethinkdb": "^2.3.3",
-    "socket.io": "^2.1.1"
+    "argon2": "^0.27.2",
+    "body-parser": "^1.19.0",
+    "config": "^3.3.6",
+    "cors": "^2.8.5",
+    "debug": "^4.3.1",
+    "express": "^4.17.1",
+    "socket.io": "^4.1.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.3",
-    "parallelshell": "^3.0.2"
+    "nodemon": "^2.0.7"
   }
 }

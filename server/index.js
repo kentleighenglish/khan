@@ -1,48 +1,37 @@
-const path = require('path');
-const { port, allowedOrigins } = require('config');
-const { Server } = require('http');
-const Express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+import path from "path";
+// const { port, allowedOrigins } = require('config');
+// const { Server } = require('http');
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import debugFunc from "debug";
 
-const SocketLib = require('./socketlib');
-const dblib = require('./dblib');
-const apiHandler = require('./apiHandler');
+const debug = debugFunc("server");
 
-class ServerClass {
+// const SocketLib = require('./socketlib');
+// const dblib = require('./dblib');
+// const apiHandler = require('./apiHandler');
 
-	constructor() {
-		this.app = new Express();
-		this.server = new Server(this.app);
-		this.socket = new SocketLib(this.server);
-
-		this.appInit();
-
-		this.start();
-
-		dblib.init();
-	}
-
-	appInit() {
-		this.app.use(cors({
-			origins: allowedOrigins
-		}));
-		this.app.use(bodyParser.json());
-
-		this.app.get('/api/:controller/:action', (request, response) => {
-			new apiHandler(request, response);
-		});
-		this.app.post('/api/:controller/:action', (request, response) => {
-			new apiHandler(request, response);
-		});
-	}
-
-	start() {
-		this.server.listen(port, function () {
-			console.log('\n[Khan Server Live]');
-			console.log(`Listening on *:${port}`);
-		});
-	}
+const config = {
+	port: 3001,
+	allowedOrigins: ["localhost:3000"]
 }
 
-const server = new ServerClass();
+const server = express();
+
+server.use(cors({
+	origins: config.allowedOrigins
+}));
+server.use(bodyParser.json());
+
+server.get("/api/:controller/:action", (request, response) => {
+	new apiHandler(request, response);
+});
+server.post("/api/:controller/:action", (request, response) => {
+	new apiHandler(request, response);
+});
+
+server.listen(config.port, () => {
+	debug(`Server Listening on localhost:${config.port}`);
+});
+
