@@ -1,6 +1,6 @@
 import Vue from "vue";
 import {
-  socketConnectType,
+  socketAddSocketType,
   socketReconnectType,
   socketConnectingType,
   socketConnectedType,
@@ -10,10 +10,7 @@ import {
 import { SocketClientInstance } from "@/types/socket";
 
 export default {
-  [socketConnectType](state: SocketState, socket: SocketClientInstance) {
-    Vue.set(state, "connecting", true);
-    Vue.set(state, "connected", false);
-
+  [socketAddSocketType](state: SocketState, socket: SocketClientInstance) {
     Vue.set(state, "socket", socket);
   },
   [socketReconnectType](state: SocketState) {
@@ -29,7 +26,7 @@ export default {
     Vue.set(state, "connected", true);
   },
   [socketDisconnectedType](state: SocketState) {
-    Vue.set(state, "loaded", false);
-    Vue.set(state, "loading", false);
+    Vue.set(state, "connecting", false);
+    Vue.set(state, "connected", false);
   },
 };

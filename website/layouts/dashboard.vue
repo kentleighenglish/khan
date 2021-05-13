@@ -25,17 +25,17 @@ export default Vue.extend({
     }),
   },
   mounted() {
-    const socket = this.$socket();
+    const socket = this.$socket;
 
-    this.socketConnect({ socket });
+    this.addSocket({ socket });
 
     if (!this.socketConnected && !this.socketConnecting) {
-      socket.connect();
+      this.$socket().connect();
     }
   },
   methods: {
     ...mapActions({
-      socketConnect: "socket/connect",
+      addSocket: "socket/addSocket",
     }),
   },
 });

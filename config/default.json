@@ -1,6 +1,5 @@
 {
    "server": {
-     "allowedOrigins": ["localhost:3000"],
      "host": "localhost",
      "port": 3001
    },
@@ -11,5 +10,9 @@
    "socket": {
      "host": "localhost:3001",
      "path": "/socket"
+   },
+   "cors": {
+     "origins": "http://localhost:3000",
+     "methods": "get,post"
    }
 }

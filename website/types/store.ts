@@ -58,7 +58,7 @@ export const devicesFetchSuccessType = "@devices/fetchSuccess";
 export const devicesFetchFailureType = "@devices/fetchFailure";
 
 // Socket Module Types
-export const socketConnectType = "@socket/connect";
+export const socketAddSocketType = "@socket/addSocket";
 export const socketReconnectType = "@socket/reconnect";
 export const socketConnectingType = "@socket/connecting";
 export const socketConnectedType = "@socket/connected";

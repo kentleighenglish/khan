@@ -7,8 +7,6 @@ const bodyParser = require("body-parser");
 const debugFunc = require("debug");
 const config = require("config");
 
-const { server: serverConfig } = config;
-
 const debug = debugFunc("server:core");
 
 const io = require("./socket");
@@ -23,11 +21,13 @@ const app = express(server);
 io(server);
 
 app.use(cors({
-	origins: serverConfig.allowedOrigins
+	origin: config.cors.origins.split(','),
+	methods: config.cors.methods.split(','),
+	credentials: true
 }));
 app.use(bodyParser.json());
 
-server.listen(serverConfig.port, () => {
-	debug(`Server Listening on localhost:${serverConfig.port}`);
+server.listen(config.server.port, () => {
+	debug(`Server Listening on localhost:${config.server.port}`);
 });
 

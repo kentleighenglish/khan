@@ -3,7 +3,7 @@ import config from "config";
 const publicRuntimeConfig = {
   socket: {
     path: config.socket.path,
-    host: config.socket.path,
+    host: config.socket.host,
   },
 };
 

@@ -10,5 +10,9 @@
   "socket": {
     "host": "SERVER_HOST",
     "path": "SOCKET_PATH"
+  },
+  "cors": {
+    "origins": "CORS_ALLOWED_ORIGINS",
+    "methods": "CORS_ALLOWED_METHODS"
   }
 }

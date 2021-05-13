@@ -21,7 +21,11 @@ const hookEvents = (socketIO) => {
 
 module.exports = (server) => {
 	const socketIO = io(server, {
-		path: config.socket.path
+		path: config.socket.path,
+		cors: {
+			origin: config.cors.origins.split(','),
+			methods: config.cors.methods.split(','),
+		}
 	});
 	
 	hookEvents(socketIO);

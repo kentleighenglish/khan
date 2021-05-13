@@ -1,6 +1,5 @@
 import {
-  socketConnectType,
-  socketReconnectType,
+  socketAddSocketType,
   socketConnectingType,
   socketConnectedType,
   socketDisconnectedType,
@@ -9,7 +8,7 @@ import {
 import { SocketClientInstance } from "@/types/socket";
 
 export const hookEvents = ({ commit, state }: Store) => {
-  const socket = state.socket;
+  const socket = state.socket();
 
   if (socket) {
     // Connect
@@ -32,7 +31,7 @@ export const hookEvents = ({ commit, state }: Store) => {
     socket.on("reconnect_failed", () => {
       commit(socketDisconnectedType);
     });
-    socket.on("disconnected", () => {
+    socket.on("disconnect", () => {
       commit(socketDisconnectedType);
     });
 
@@ -50,17 +49,17 @@ export const hookEvents = ({ commit, state }: Store) => {
   socket.on("reconnect_error", () => {});
 };
 
-export const connect = (
+export const addSocket = (
   { commit, dispatch }: Store,
-  { socket }: { socket: SocketClientInstance }
+  { socket }: { socket: () => SocketClientInstance }
 ) => {
-  commit(socketConnectType, socket);
+  commit(socketAddSocketType, socket);
 
   dispatch("hookEvents");
 };
 
-export const reconnect = ({ commit }: Store) => commit(socketReconnectType);
-export const connecting = ({ commit }: Store) => commit(socketConnectingType);
-export const connected = ({ commit }: Store) => commit(socketConnectedType);
-export const disconnected = ({ commit }: Store) =>
-  commit(socketDisconnectedType);
+// export const reconnect = ({ commit }: Store) => commit(socketReconnectType);
+// export const connecting = ({ commit }: Store) => commit(socketConnectingType);
+// export const connected = ({ commit }: Store) => commit(socketConnectedType);
+// export const disconnected = ({ commit }: Store) =>
+//   commit(socketDisconnectedType);
