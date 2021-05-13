@@ -1,33 +1,31 @@
-import path from "path";
+const path = require("path");
 // const { port, allowedOrigins } = require('config');
-// const { Server } = require('http');
-import express from "express";
-import cors from "cors";
-import bodyParser from "body-parser";
-import debugFunc from "debug";
-import config from "config";
+const { Server } = require('http');
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const debugFunc = require("debug");
+const config = require("config");
 
 const { server: serverConfig } = config;
 
 const debug = debugFunc("server:core");
 
-// const SocketLib = require('./socketlib');
+const io = require("./socket");
+
 // const dblib = require('./dblib');
 // const apiHandler = require('./apiHandler');
 
-const server = express();
+const server = Server();
 
-server.use(cors({
+const app = express(server);
+
+io(server);
+
+app.use(cors({
 	origins: serverConfig.allowedOrigins
 }));
-server.use(bodyParser.json());
-
-server.get("/api/:controller/:action", (request, response) => {
-	new apiHandler(request, response);
-});
-server.post("/api/:controller/:action", (request, response) => {
-	new apiHandler(request, response);
-});
+app.use(bodyParser.json());
 
 server.listen(serverConfig.port, () => {
 	debug(`Server Listening on localhost:${serverConfig.port}`);
