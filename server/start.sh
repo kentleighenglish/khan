@@ -1,9 +1,6 @@
 #!/bin/sh
 
-if [ -f ../.env ];
-then
-	source "../.env";
-fi
+source ../.env > /dev/null 2>&1;
 
 if [ "$NODE_ENV" == 'production' ]
 then

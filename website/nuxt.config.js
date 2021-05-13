@@ -1,3 +1,12 @@
+import config from "config";
+
+const publicRuntimeConfig = {
+  socket: {
+    path: config.socket.path,
+    host: config.socket.path,
+  },
+};
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -52,4 +61,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  publicRuntimeConfig,
 };

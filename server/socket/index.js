@@ -7,6 +7,7 @@ const debug = debugFunc("socket:server");
 const hookEvents = (socketIO) => {
 	socketIO.on('connect', (socket) => {
 		const { handshake: { query } } = socket;
+		debug("Remote connection");
 
 		if (query && query.user) {
 			const user = JSON.parse(query.user);
