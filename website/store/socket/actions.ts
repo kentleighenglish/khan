@@ -6,12 +6,7 @@ import {
   socketDisconnectedType,
   Store,
 } from "@/types/store";
-// import { init as socketInit } from "@src/utilities/socket";
-import { User } from "@/types/user";
-
-const socketInit = (user: any) => {
-  return user;
-};
+import { SocketClientInstance } from "@/types/socket";
 
 export const hookEvents = ({ commit, state }: Store) => {
   const socket = state.socket;
@@ -40,6 +35,13 @@ export const hookEvents = ({ commit, state }: Store) => {
     socket.on("disconnected", () => {
       commit(socketDisconnectedType);
     });
+
+    window.addEventListener("online", () => {
+      commit(socketConnectingType);
+    });
+    window.addEventListener("offline", () => {
+      commit(socketDisconnectedType);
+    });
   }
 
   // Errors
@@ -48,19 +50,13 @@ export const hookEvents = ({ commit, state }: Store) => {
   socket.on("reconnect_error", () => {});
 };
 
-export const connect = ({ commit, dispatch }: Store, user: User) => {
-  const socket = socketInit(user);
+export const connect = (
+  { commit, dispatch }: Store,
+  { socket }: { socket: SocketClientInstance }
+) => {
+  commit(socketConnectType, socket);
 
   dispatch("hookEvents");
-
-  window.addEventListener("online", () => {
-    commit(socketConnectingType);
-  });
-  window.addEventListener("offline", () => {
-    commit(socketDisconnectedType);
-  });
-
-  commit(socketConnectType, socket);
 };
 
 export const reconnect = ({ commit }: Store) => commit(socketReconnectType);

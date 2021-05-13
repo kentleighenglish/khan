@@ -9,6 +9,37 @@
     </div>
   </App>
 </template>
+<script lang="ts">
+import Vue from "vue";
+import { mapActions, mapState } from "vuex";
+
+export default Vue.extend({
+  computed: {
+    ...mapState({
+      socketConnected({ socket: { connected } }) {
+        return connected;
+      },
+      socketConnecting({ socket: { connecting } }) {
+        return connecting;
+      },
+    }),
+  },
+  mounted() {
+    const socket = this.$socket();
+
+    this.socketConnect({ socket });
+
+    if (!this.socketConnected && !this.socketConnecting) {
+      socket.connect();
+    }
+  },
+  methods: {
+    ...mapActions({
+      socketConnect: "socket/connect",
+    }),
+  },
+});
+</script>
 <style lang="scss">
 .dashboard-content {
   display: flex;
