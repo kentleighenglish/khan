@@ -128,11 +128,28 @@ nav.nav {
   display: flex;
   justify-content: space-between;
 
-  &--dashboard {
-    display: block;
+  &.nav--dashboard {
     justify-content: initial;
-    background: $grey-darker;
-    border-bottom: 1px solid $grey-darkest;
+    background: $grey-lightest;
+
+    align-items: center;
+
+    ul {
+      width: 100%;
+
+      li {
+        a {
+          font-size: $font-sm;
+          color: $grey-darker;
+          font-weight: 600;
+
+          &:hover {
+            color: lighten($secondary, 10%);
+            background: darken($grey-lightest, 3%);
+          }
+        }
+      }
+    }
   }
 
   ul {
@@ -158,6 +175,109 @@ nav.nav {
           color: $grey-darkest;
           text-decoration: none;
         }
+      }
+    }
+  }
+}
+
+@keyframes iconSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.dashboard-socketState {
+  display: flex;
+  padding: 0 ($gap / 2);
+  white-space: nowrap;
+  align-items: center;
+  cursor: pointer;
+
+  transition: color $anim-speed, border-color $anim-speed;
+
+  &__text {
+    margin-right: $gap / 2;
+  }
+
+  &__icon {
+    display: inline-flex;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+
+    &Inner {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+
+      border: 2px solid black;
+      border-color: inherit;
+    }
+
+    &Middle,
+    &Outer {
+      position: absolute;
+      border: 2px solid black;
+      border-color: inherit;
+      border-radius: 50%;
+
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      transform: rotate(0deg);
+
+      animation: iconSpin infinite linear;
+      animation-play-state: paused;
+    }
+    &Middle {
+      height: 16px;
+      width: 16px;
+
+      animation-duration: 2s;
+      animation-direction: reverse;
+    }
+    &Outer {
+      height: 28px;
+      width: 28px;
+
+      animation-duration: 1s;
+    }
+  }
+
+  &--connected {
+    color: $success;
+    border-color: $success;
+
+    .dashboard-socketState__icon {
+      span {
+        animation: initial;
+      }
+    }
+  }
+  &--connecting {
+    color: $warning;
+    border-color: $warning;
+
+    .dashboard-socketState__icon {
+      span {
+        animation-play-state: running;
+      }
+    }
+  }
+  &--disconnected {
+    color: $danger;
+    border-color: $danger;
+
+    .dashboard-socketState__icon {
+      span {
+        animation-play-state: running;
+        animation-duration: 0.3s;
+        animation-iteration-count: 1;
       }
     }
   }
