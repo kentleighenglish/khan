@@ -10,9 +10,9 @@
   "author": "Kentleigh English",
   "license": "ISC",
   "dependencies": {
-    "config": "^1.30.0",
+    "config": "^3.3.6",
     "nedb": "^1.8.0",
-    "shelljs": "^0.7.8",
-    "socket.io-client": "^2.0.3"
+    "shelljs": "^0.8.4",
+    "socket.io-client": "^4.1.1"
   }
 }
