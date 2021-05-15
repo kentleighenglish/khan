@@ -1,4 +1,5 @@
+#!/bin/sh
 
-source "./.env";
+source ../.env > /dev/null 2>&1;
 
-node index.js;
+node index
