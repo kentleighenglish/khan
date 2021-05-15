@@ -141,7 +141,7 @@ nav.nav {
         a {
           font-size: $font-sm;
           color: $grey-darker;
-          font-weight: 600;
+          padding: ($gap / 4) $gap;
 
           &:hover {
             color: lighten($secondary, 10%);
@@ -192,6 +192,7 @@ nav.nav {
 .dashboard-socketState {
   display: flex;
   padding: 0 ($gap / 2);
+  height: 100%;
   white-space: nowrap;
   align-items: center;
   cursor: pointer;
@@ -199,31 +200,32 @@ nav.nav {
   transition: color $anim-speed, border-color $anim-speed;
 
   &__text {
+    font-size: $font-xs;
     margin-right: $gap / 2;
   }
 
   &__icon {
     display: inline-flex;
     position: relative;
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     justify-content: center;
     align-items: center;
 
     &Inner {
       position: absolute;
-      width: 4px;
-      height: 4px;
+      width: 2px;
+      height: 2px;
       border-radius: 50%;
 
-      border: 2px solid black;
+      border: 1px solid black;
       border-color: inherit;
     }
 
     &Middle,
     &Outer {
       position: absolute;
-      border: 2px solid black;
+      border: 1px solid black;
       border-color: inherit;
       border-radius: 50%;
 
@@ -235,15 +237,15 @@ nav.nav {
       animation-play-state: paused;
     }
     &Middle {
-      height: 16px;
-      width: 16px;
+      height: 8px;
+      width: 8px;
 
       animation-duration: 2s;
       animation-direction: reverse;
     }
     &Outer {
-      height: 28px;
-      width: 28px;
+      height: 14px;
+      width: 14px;
 
       animation-duration: 1s;
     }
