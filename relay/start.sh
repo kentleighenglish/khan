@@ -1,5 +1,5 @@
 #!/bin/bash
 
-source ../.env > /dev/null;
+source ../.env;
 
 node index

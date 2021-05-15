@@ -18,16 +18,15 @@ var relayData = {};
 
 
 function init() {
-	console.log("init");
 	db.metadata.find({}, function(err, res){
-		console.log("Find All");
+		console.log("Metadata loaded");
 
 		res.map(function(property) {
 			relayData[property.name] = property.value;
 		});
 
 
-		var socket = io(config.socket.host, {
+		var socket = io(`ws://${config.socket.host}`, {
 			path: config.socket.path,
 			query: {
 				type: 'relay',
@@ -75,7 +74,6 @@ function init() {
 
 			socket.emit('updateRelayResponse', {success: true, data: relayData});
 		});
-
 	});
 }
 
