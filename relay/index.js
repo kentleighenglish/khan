@@ -26,6 +26,8 @@ function init() {
 			relayData[property.name] = property.value;
 		});
 
+
+		console.log(`Connect to socket: ${config.socket.host}${config.socket.path}`);
 		var socket = io(config.socket.host, {
 			path: config.socket.path,
 			query: {
