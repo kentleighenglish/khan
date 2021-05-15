@@ -16,34 +16,38 @@ var relayData = {};
 
 // socket.connect();
 
+
 function init() {
+	console.log("init");
 	db.metadata.find({}, function(err, res){
+		console.log("Find All");
+
 		res.map(function(property) {
 			relayData[property.name] = property.value;
 		});
 
-		var socket = io(config.host, {
-			path: '/socket',
+		var socket = io(config.socket.host, {
+			path: config.socket.path,
 			query: {
 				type: 'relay',
-				id: config.identifier,
+				id: config.relay.hardwareId,
 				data: JSON.stringify(relayData)
 			}
 		});
 
 
 		socket.on('connect', function (socket) {
-		    console.log('Successfully Connected to '+config.host);
+		    console.log('Successfully Connected to '+config.socket.host);
 		});
 
 		socket.on('disconnect', function() {
-			console.log("Disconnected from "+config.host)
+			console.log("Disconnected from "+config.socket.host)
 		})
 
 		socket.on('reconnect_attempt', () => {
 			socket.io.opts.query = {
 				type: 'relay',
-				id: config.identifier,
+				id: config.relay.hardwareId,
 				data: JSON.stringify(relayData)
 			}
 		});
