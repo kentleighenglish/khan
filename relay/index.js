@@ -27,7 +27,6 @@ function init() {
 		});
 
 
-		console.log(`Connect to socket: ${config.socket.host}${config.socket.path}`);
 		var socket = io(config.socket.host, {
 			path: config.socket.path,
 			query: {
@@ -76,6 +75,7 @@ function init() {
 
 			socket.emit('updateRelayResponse', {success: true, data: relayData});
 		});
+
 	});
 }
 
