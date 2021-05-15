@@ -14,5 +14,8 @@
    "cors": {
      "origins": "http://localhost:3000",
      "methods": "get,post"
+   },
+   "relay": {
+     "hardwareId": ""
    }
 }

@@ -1,5 +1,5 @@
-const config = require('./site-config.json');
-const rfInterface = require('./rfInterface.js');
+const config = require("config");
+const rfInterface = require("./rfInterface");
 const Datastore = require('nedb');
 const path = require('path');
 
