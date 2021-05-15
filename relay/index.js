@@ -14,9 +14,6 @@ db.metadata.loadDatabase();
 const io = require('socket.io-client');
 var relayData = {};
 
-// socket.connect();
-
-
 function init() {
 	db.metadata.find({}, function(err, res){
 		console.log("Metadata loaded");
