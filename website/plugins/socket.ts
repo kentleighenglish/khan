@@ -9,6 +9,9 @@ const plugin: Plugin = ({ app }, inject) => {
     autoConnect: false,
     reconnectionAttempts: 4,
     path: socketConfig.path,
+    query: {
+      type: "app",
+    },
   });
 
   inject("socket", () => socket);

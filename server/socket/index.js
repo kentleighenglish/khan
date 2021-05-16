@@ -18,7 +18,18 @@ const hookEvents = (socketIO) => {
     }
 
     if (query?.type === "relay") {
+      debug("Relay connected", JSON.stringify(query));
 
+      socket.join("relays");
+    } else if (query?.type === "app") {
+      debug("App connected", JSON.stringify(query));
+
+      socket.on("updateRelay", (data) => {
+        const hardwareId = "000000";
+        const payload = data.value ? 1 : 0;
+
+        socketIO.to("relays").emit("msgRelay", { hardwareId, payload })
+      });
     }
   });
 };
